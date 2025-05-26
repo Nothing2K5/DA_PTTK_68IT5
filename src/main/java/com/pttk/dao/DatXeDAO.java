@@ -170,6 +170,37 @@ public class DatXeDAO extends AbstractDAO<DatXe> {
         return null;
     }
 
+    public List<DatXe> findByNguoiDungAndTrangThai(String userID, String trangThai) {
+        String query = "SELECT * FROM DatXe WHERE UserID = ? AND TrangThai = ? ORDER BY Ngay DESC";
+        List<DatXe> list = new ArrayList<>();
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, userID);
+            ps.setString(2, trangThai);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new DatXe(
+                        rs.getString(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getDate(6),
+                        rs.getString(7),
+                        rs.getString(8),
+                        rs.getString(9),
+                        rs.getString(10),
+                        rs.getInt(11)
+                ));
+            }
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public List<DatXe> findByNgay(Date ngay) {
         String query = "SELECT * FROM DatXe WHERE Ngay = ?";
         List<DatXe> list = new ArrayList<>();

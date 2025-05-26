@@ -1,8 +1,10 @@
 package com.pttk.control;
 
 import com.pttk.dao.NguoiDungDAO;
+import com.pttk.dao.QuanLyDAO;
 import com.pttk.dao.TaiKhoanDAO;
 import com.pttk.entity.NguoiDung;
+import com.pttk.entity.QuanLy;
 import com.pttk.entity.TaiKhoan;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -23,11 +25,12 @@ import javax.websocket.Session;
 public class ProfileControl extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {      
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String action = req.getParameter("action");
 
         TaiKhoanDAO tkdao = new TaiKhoanDAO();
         NguoiDungDAO nddao = new NguoiDungDAO();
+        QuanLyDAO qldao = new QuanLyDAO();
 
         HttpSession session = req.getSession();
         TaiKhoan tkSession = (TaiKhoan) session.getAttribute("TAIKHOAN");
@@ -42,10 +45,15 @@ public class ProfileControl extends HttpServlet {
             resp.sendRedirect(req.getContextPath() + "/home");
 
         } else {
-            NguoiDung nd = nddao.findOne(nddao.findOneByTKID(tkSession.getTKID()).getUserID());
-            TaiKhoan tk = tkdao.findOne(tkSession.getTKID());
+            if (tkSession.getVaiTro().equals("Khách hàng")) {
+                NguoiDung nd = nddao.findOne(nddao.findOneByTKID(tkSession.getTKID()).getUserID());
+                req.setAttribute("thongTin", nd);
+            } else if (tkSession.getVaiTro().equals("Quản lý")) {
+                QuanLy ql = qldao.findOne(qldao.findOneByTKID(tkSession.getTKID()).getQlid());
+                req.setAttribute("thongTin", ql);
+            }
 
-            req.setAttribute("nguoiDung", nd);
+            TaiKhoan tk = tkdao.findOne(tkSession.getTKID());
             req.setAttribute("taiKhoan", tk);
         }
 
@@ -65,11 +73,11 @@ public class ProfileControl extends HttpServlet {
         String matKhau = req.getParameter("matKhau");
 
         NguoiDungDAO nddao = new NguoiDungDAO();
+        QuanLyDAO qldao = new QuanLyDAO();
         TaiKhoanDAO tkdao = new TaiKhoanDAO();
 
         HttpSession session = req.getSession();
         TaiKhoan tk = (TaiKhoan) session.getAttribute("TAIKHOAN");
-        NguoiDung nd = nddao.findOne(nddao.findOneByTKID(tk.getTKID()).getUserID());
 
         if (matKhau != null && !(matKhau.isEmpty()) && !(matKhau.equals(tk.getMatKhau()))) {
 
@@ -79,7 +87,13 @@ public class ProfileControl extends HttpServlet {
 
         boolean checktk = tkdao.update(tk.getTKID(), matKhau, tk.getVaiTro(), sdt, tk.getSoDu());
 
-        boolean checknd = nddao.update(nd.getUserID(), nd.getTkid(), hoTen, email);
+        if (tk.getVaiTro().equals("Khách hàng")) {
+            NguoiDung nd = nddao.findOne(nddao.findOneByTKID(tk.getTKID()).getUserID());
+            boolean checknd = nddao.update(nd.getUserID(), nd.getTkid(), hoTen, email);
+        } else if (tk.getVaiTro().equals("Quản lý")) {
+            QuanLy ql = qldao.findOne(qldao.findOneByTKID(tk.getTKID()).getQlid());
+            boolean checkql = qldao.update(ql.getQlid(), ql.getTkid(), hoTen, email);
+        }
 
         resp.sendRedirect(req.getContextPath() + "/profile");
     }

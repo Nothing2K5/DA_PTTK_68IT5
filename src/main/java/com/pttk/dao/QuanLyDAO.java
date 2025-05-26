@@ -60,7 +60,7 @@ public class QuanLyDAO extends AbstractDAO<QuanLy> {
         return null;
     }
 
-    public QuanLy findByTKID(String tkid) {
+    public QuanLy findOneByTKID(String tkid) {
         String query = "SELECT * FROM QuanLy WHERE TKID = ?";
         try {
             conn = new DBContext().getConnection();
