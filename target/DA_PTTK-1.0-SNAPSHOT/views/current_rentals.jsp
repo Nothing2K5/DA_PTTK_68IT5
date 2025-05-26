@@ -21,9 +21,9 @@
                 <c:if test="${sessionScope.TAIKHOAN != null}">
                     <li><a href="<c:url value='/home'/>"><i class="fas fa-home"></i> Trang chủ</a></li>
                     <li><a href="<c:url value='/stations'/>"><i class="fas fa-map-marker-alt"></i> Trạm xe</a></li>                 
-                    <li><a href="topup.html"><i class="fas fa-wallet"></i> Nạp tiền</a></li>
+                    <li><a href="<c:url value='/topup'/>"><i class="fas fa-wallet"></i> Nạp tiền</a></li>
                     <li><a href="<c:url value='/profile'/>"><i class="fas fa-user"></i> Hồ sơ</a></li>                   
-                    <li><a href="notifications.html"><i class="fas fa-bell"></i> Thông báo</a></li>                   
+                    <li><a href="<c:url value='/notiictions'/>"><i class="fas fa-bell"></i> Thông báo</a></li>                   
                     </c:if>
             </ul>
 
@@ -130,7 +130,7 @@
                         <h3>${xeDap.loaiXe}</h3>
                         <p><strong>Bắt đầu:</strong> ${datXe.thoiGianBatDau} ngày ${datXe.ngay}</p>
                         <p><strong>Vị trí:</strong> ${tramXe.tenTram} (${tramXe.diaChi})</p>
-                        <form action="tra_xe" method="post">
+                        <form action="<c:url value='/return?datXeID=${datXe.datXeID}'/>">
                             <input type="hidden" name="datXeID" value="${datXe.datXeID}" />
                             <button type="submit" class="hero-btn">Trả xe</button>
                         </form>

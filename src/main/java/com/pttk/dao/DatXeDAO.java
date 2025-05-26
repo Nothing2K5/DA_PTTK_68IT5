@@ -35,12 +35,14 @@ public class DatXeDAO extends AbstractDAO<DatXe> {
                         rs.getString(1),
                         rs.getString(2),
                         rs.getString(3),
-                        rs.getDate(4),
+                        rs.getString(4),
                         rs.getString(5),
-                        rs.getString(6),
+                        rs.getDate(6),
                         rs.getString(7),
                         rs.getString(8),
-                        rs.getInt(9)
+                        rs.getString(9),
+                        rs.getString(10),
+                        rs.getInt(11)
                 ));
             }
             return list;
@@ -62,12 +64,14 @@ public class DatXeDAO extends AbstractDAO<DatXe> {
                         rs.getString(1),
                         rs.getString(2),
                         rs.getString(3),
-                        rs.getDate(4),
+                        rs.getString(4),
                         rs.getString(5),
-                        rs.getString(6),
+                        rs.getDate(6),
                         rs.getString(7),
                         rs.getString(8),
-                        rs.getInt(9)
+                        rs.getString(9),
+                        rs.getString(10),
+                        rs.getInt(11)
                 );
             }
         } catch (Exception e) {
@@ -89,12 +93,14 @@ public class DatXeDAO extends AbstractDAO<DatXe> {
                         rs.getString(1),
                         rs.getString(2),
                         rs.getString(3),
-                        rs.getDate(4),
+                        rs.getString(4),
                         rs.getString(5),
-                        rs.getString(6),
+                        rs.getDate(6),
                         rs.getString(7),
                         rs.getString(8),
-                        rs.getInt(9)
+                        rs.getString(9),
+                        rs.getString(10),
+                        rs.getInt(11)
                 ));
             }
             return list;
@@ -117,12 +123,14 @@ public class DatXeDAO extends AbstractDAO<DatXe> {
                         rs.getString(1),
                         rs.getString(2),
                         rs.getString(3),
-                        rs.getDate(4),
+                        rs.getString(4),
                         rs.getString(5),
-                        rs.getString(6),
+                        rs.getDate(6),
                         rs.getString(7),
                         rs.getString(8),
-                        rs.getInt(9)
+                        rs.getString(9),
+                        rs.getString(10),
+                        rs.getInt(11)
                 ));
             }
             return list;
@@ -145,12 +153,14 @@ public class DatXeDAO extends AbstractDAO<DatXe> {
                         rs.getString(1),
                         rs.getString(2),
                         rs.getString(3),
-                        rs.getDate(4),
+                        rs.getString(4),
                         rs.getString(5),
-                        rs.getString(6),
+                        rs.getDate(6),
                         rs.getString(7),
                         rs.getString(8),
-                        rs.getInt(9)
+                        rs.getString(9),
+                        rs.getString(10),
+                        rs.getInt(11)
                 ));
             }
             return list;
@@ -173,12 +183,14 @@ public class DatXeDAO extends AbstractDAO<DatXe> {
                         rs.getString(1),
                         rs.getString(2),
                         rs.getString(3),
-                        rs.getDate(4),
+                        rs.getString(4),
                         rs.getString(5),
-                        rs.getString(6),
+                        rs.getDate(6),
                         rs.getString(7),
                         rs.getString(8),
-                        rs.getInt(9)
+                        rs.getString(9),
+                        rs.getString(10),
+                        rs.getInt(11)
                 ));
             }
             return list;
@@ -201,12 +213,14 @@ public class DatXeDAO extends AbstractDAO<DatXe> {
                         rs.getString(1),
                         rs.getString(2),
                         rs.getString(3),
-                        rs.getDate(4),
+                        rs.getString(4),
                         rs.getString(5),
-                        rs.getString(6),
+                        rs.getDate(6),
                         rs.getString(7),
                         rs.getString(8),
-                        rs.getInt(9)
+                        rs.getString(9),
+                        rs.getString(10),
+                        rs.getInt(11)
                 ));
             }
             return list;
@@ -216,8 +230,8 @@ public class DatXeDAO extends AbstractDAO<DatXe> {
         return null;
     }
 
-    public String add(String userID, String xeID, Date ngay, String thoiGianBatDau, String thoiGianKetThuc, String thoiGianChoThue, String trangThai, int chiPhi) {
-        String query = "INSERT INTO DatXe (DatXeID, UserID, XeID, Ngay, ThoiGianBatDau, ThoiGianKetThuc, ThoiGianChoThue, TrangThai, ChiPhi) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    public String add(String userID, String xeID, String tramXeBatDau, String tramXeKetThuc, Date ngay, String thoiGianBatDau, String thoiGianKetThuc, String thoiGianChoThue, String trangThai, int chiPhi) {
+        String query = "INSERT INTO DatXe (DatXeID, UserID, XeID, TramXeBatDau, TramXeKetThuc, Ngay, ThoiGianBatDau, ThoiGianKetThuc, ThoiGianChoThue, TrangThai, ChiPhi) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         String datXeID = generatedID("D", findLastItem(findAll()).getDatXeID());
         try {
             conn = new DBContext().getConnection();
@@ -225,12 +239,14 @@ public class DatXeDAO extends AbstractDAO<DatXe> {
             ps.setString(1, datXeID);
             ps.setString(2, userID);
             ps.setString(3, xeID);
-            ps.setDate(4, ngay);
-            ps.setString(5, thoiGianBatDau);
-            ps.setString(6, thoiGianKetThuc);
-            ps.setString(7, thoiGianChoThue);
-            ps.setString(8, trangThai);
-            ps.setInt(9, chiPhi);
+            ps.setString(4, tramXeBatDau);
+            ps.setString(5, tramXeKetThuc);
+            ps.setDate(6, ngay);
+            ps.setString(7, thoiGianBatDau);
+            ps.setString(8, thoiGianKetThuc);
+            ps.setString(9, thoiGianChoThue);
+            ps.setString(10, trangThai);
+            ps.setInt(11, chiPhi);
             if (ps.executeUpdate() > 0) {
                 return datXeID;
             }
@@ -254,20 +270,22 @@ public class DatXeDAO extends AbstractDAO<DatXe> {
         return null;
     }
 
-    public boolean update(String datXeID, String userID, String xeID, Date ngay, String thoiGianBatDau, String thoiGianKetThuc, String thoiGianChoThue, String trangThai, int chiPhi) {
-        String query = "UPDATE DatXe SET UserID = ?, XeID = ?, Ngay = ?, ThoiGianBatDau = ?, ThoiGianKetThuc = ?, ThoiGianChoThue = ?, TrangThai = ?, ChiPhi = ? WHERE DatXeID = ?";
+    public boolean update(String datXeID, String userID, String xeID, String tramXeBatDau, String tramXeKetThuc, Date ngay, String thoiGianBatDau, String thoiGianKetThuc, String thoiGianChoThue, String trangThai, int chiPhi) {
+        String query = "UPDATE DatXe SET UserID = ?, XeID = ?, TramXeBatDau = ?, TramXeKetThuc = ?, Ngay = ?, ThoiGianBatDau = ?, ThoiGianKetThuc = ?, ThoiGianChoThue = ?, TrangThai = ?, ChiPhi = ? WHERE DatXeID = ?";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(query);
             ps.setString(1, userID);
             ps.setString(2, xeID);
-            ps.setDate(3, ngay);
-            ps.setString(4, thoiGianBatDau);
-            ps.setString(5, thoiGianKetThuc);
-            ps.setString(6, thoiGianChoThue);
-            ps.setString(7, trangThai);
-            ps.setInt(8, chiPhi);
-            ps.setString(9, datXeID);
+            ps.setString(3, tramXeBatDau);
+            ps.setString(4, tramXeKetThuc);
+            ps.setDate(5, ngay);
+            ps.setString(6, thoiGianBatDau);
+            ps.setString(7, thoiGianKetThuc);
+            ps.setString(8, thoiGianChoThue);
+            ps.setString(9, trangThai);
+            ps.setInt(10, chiPhi);
+            ps.setString(11, datXeID);
             int rowsAffected = ps.executeUpdate();
             return rowsAffected > 0;
         } catch (Exception e) {

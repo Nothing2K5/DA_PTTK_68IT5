@@ -13,6 +13,7 @@ import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -54,6 +55,14 @@ public class RentControl extends HttpServlet {
             req.setAttribute("tramXe", txdao.findOne(tramXeID));
 
             view = "/views/rent_bicycle.jsp";
+        } else if (tramXeID != null) {
+            XeDapDAO xddao = new XeDapDAO();
+
+            req.setAttribute("checkXeDap", xddao.checkByTramXeAndLoaiXeAndTrangThai(tramXeID, "Xe đạp", "Trống"));
+            req.setAttribute("checkXeDapTheThao", xddao.checkByTramXeAndLoaiXeAndTrangThai(tramXeID, "Xe đạp thể thao", "Trống"));
+            req.setAttribute("checkXeDapDien", xddao.checkByTramXeAndLoaiXeAndTrangThai(tramXeID, "Xe đạp điện", "Trống"));
+
+            view = "/views/rent.jsp";
         } else {
             view = "/views/rent.jsp";
         }
@@ -70,7 +79,7 @@ public class RentControl extends HttpServlet {
 
         NguoiDungDAO nddao = new NguoiDungDAO();
         DatXeDAO dxdao = new DatXeDAO();
-        XeDapDAO xddap = new XeDapDAO();
+        XeDapDAO xddao = new XeDapDAO();
 
         HttpSession session = req.getSession();
         TaiKhoan tkSession = (TaiKhoan) session.getAttribute("TAIKHOAN");
@@ -90,8 +99,8 @@ public class RentControl extends HttpServlet {
         String trangThai = "Đã đặt";
         int chiPhi = 0;
 
-        String datXeID = dxdao.add(userID, xeID, ngay, thoiGianBatDau, thoiGianKetThuc, thoiGianChoThue, trangThai, chiPhi);
-        xddap.update(xeID, tramXeID, loaiXe, "Đang sử dụng");
+        String datXeID = dxdao.add(userID, xeID, tramXeID, "", ngay, thoiGianBatDau, thoiGianKetThuc, thoiGianChoThue, trangThai, chiPhi);
+        xddao.update(xeID, tramXeID, loaiXe, "Đang sử dụng");
 
         resp.sendRedirect(req.getContextPath() + "/current_rentals");
     }

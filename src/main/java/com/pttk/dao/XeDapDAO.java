@@ -111,6 +111,26 @@ public class XeDapDAO extends AbstractDAO<XeDap> {
         return null;
     }
 
+    public boolean checkByTramXeAndLoaiXeAndTrangThai(String tramXeID, String loaiXe, String trangThaiXe) {
+        String query = "SELECT 1 FROM XeDap WHERE TRamXeID = ? AND LoaiXe = ? AND TrangThaiXe = ?";
+
+        try ( Connection conn = new DBContext().getConnection();  PreparedStatement ps = conn.prepareStatement(query)) {
+
+            ps.setString(1, tramXeID);
+            ps.setString(2, loaiXe);
+            ps.setString(3, trangThaiXe);
+
+            try ( ResultSet rs = ps.executeQuery()) {
+                return rs.next(); // Trả về true nếu có ít nhất một bản ghi
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
     public String add(String tramXeID, String loaiXe, String trangThaiXe) {
         String query = "INSERT INTO XeDap (XeID, TramXeID, LoaiXe, TrangThaiXe) VALUES (?, ?, ?, ?)";
         String xeID = generatedID("X", findLastItem(findAll()).getXeID());

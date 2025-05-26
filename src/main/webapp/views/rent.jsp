@@ -125,19 +125,27 @@
                     <i class="fas fa-bicycle"></i>
                     <h3>Xe đạp</h3>
                     <p>Phù hợp di chuyển ngắn</p>
-                    <a class="hero-btn" href="<c:url value='/rent?tramXeID=${param.tramXeID}&loaiXe=Xe đạp'/>">Thuê ngay</a>                  
+                    <c:if test="${checkXeDap == true}">
+                        <a class="hero-btn" href="<c:url value='/rent?tramXeID=${param.tramXeID}&loaiXe=Xe đạp'/>">Thuê ngay</a>
+                    </c:if>       
                 </div>
                 <div class="action-card">
                     <i class="fas fa-bolt"></i>
                     <h3>Xe đạp thể thao</h3>
                     <p>Hiệu suất cao, thoải mái</p>
-                    <a class="hero-btn" href="<c:url value='/rent?tramXeID=${param.tramXeID}&loaiXe=Xe đạp thể thao'/>">Thuê ngay</a>
+                    <c:if test="${checkXeDapTheThao == true}">
+                        <a class="hero-btn" href="<c:url value='/rent?tramXeID=${param.tramXeID}&loaiXe=Xe đạp thể thao'/>">Thuê ngay</a>
+                    </c:if>
+
                 </div>
                 <div class="action-card">
                     <i class="fas fa-motorcycle"></i>
                     <h3>Xe đạp điện</h3>
                     <p>Thích hợp cho đi lại xa</p>
-                    <a class="hero-btn" href="<c:url value='/rent?tramXeID=${param.tramXeID}&loaiXe=Xe đạp điện'/>">Thuê ngay</a>
+                    <c:if test="${checkXeDapDien == true}">
+                        <a class="hero-btn" href="<c:url value='/rent?tramXeID=${param.tramXeID}&loaiXe=Xe đạp điện'/>">Thuê ngay</a>
+                    </c:if>
+
                 </div>
             </div>
         </section>

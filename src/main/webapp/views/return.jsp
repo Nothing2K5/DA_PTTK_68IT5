@@ -120,18 +120,18 @@
         <div class="return-container">
             <h2>Trả xe & Thanh toán</h2>
             <div class="info">
-                <p><strong>Tên xe:</strong> Xe điện mini</p>
-                <p><strong>Thời gian thuê:</strong> 1 giờ 45 phút</p>
-                <p><strong>Phí thuê (tạm tính):</strong> 35.000 VNĐ</p>
+                <p><strong>Mã xe:</strong> ${datXe.xeID}</p>
+                <p><strong>Thời gian thuê:</strong> ${datXe.thoiGianChoThue}</p>
+                <p><strong>Phí thuê (tạm tính):</strong> ${datXe.chiPhi} VNĐ</p>
             </div>
-            <form action="" method="post">
+            <form action="<c:url value='/return?datXeID=${datXe.datXeID}'/>" method="post">
                 <div class="form-group">
                     <label for="station">Chọn trạm trả xe</label>
-                    <select id="station" name="station" required>
+                    <select id="tramXeID" name="tramXeID" required>
                         <option value="">-- Chọn trạm --</option>
-                        <option value="A">Trạm A - Quận 1</option>
-                        <option value="B">Trạm B - Quận 3</option>
-                        <option value="C">Trạm C - Thủ Đức</option>
+                        <c:forEach items="${listTramXe}" var="tramXe">
+                            <option value="${tramXe.tramXeID}">${tramXe.tenTram}</option>
+                        </c:forEach>                                         
                     </select>
                 </div>
                 <div class="form-group">

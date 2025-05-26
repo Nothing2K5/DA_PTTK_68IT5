@@ -15,6 +15,8 @@ public class DatXe {
     private String datXeID;
     private String userID;
     private String xeID;
+    private String tramXeBatDau;
+    private String tramXeKetThuc;
     private Date ngay;
     private String thoiGianBatDau;
     private String thoiGianKetThuc;
@@ -25,10 +27,12 @@ public class DatXe {
     public DatXe() {
     }
 
-    public DatXe(String datXeID, String userID, String xeID, Date ngay, String thoiGianBatDau, String thoiGianKetThuc, String thoiGianChoThue, String trangThai, int chiPhi) {
+    public DatXe(String datXeID, String userID, String xeID, String tramXeBatDau, String tramXeKetThuc, Date ngay, String thoiGianBatDau, String thoiGianKetThuc, String thoiGianChoThue, String trangThai, int chiPhi) {
         this.datXeID = datXeID;
         this.userID = userID;
         this.xeID = xeID;
+        this.tramXeBatDau = tramXeBatDau;
+        this.tramXeKetThuc = tramXeKetThuc;
         this.ngay = ngay;
         this.thoiGianBatDau = thoiGianBatDau;
         this.thoiGianKetThuc = thoiGianKetThuc;
@@ -59,6 +63,22 @@ public class DatXe {
 
     public void setXeID(String xeID) {
         this.xeID = xeID;
+    }
+
+    public String getTramXeBatDau() {
+        return tramXeBatDau;
+    }
+
+    public void setTramXeBatDau(String tramXeBatDau) {
+        this.tramXeBatDau = tramXeBatDau;
+    }
+
+    public String getTramXeKetThuc() {
+        return tramXeKetThuc;
+    }
+
+    public void setTramXeKetThuc(String tramXeKetThuc) {
+        this.tramXeKetThuc = tramXeKetThuc;
     }
 
     public Date getNgay() {
