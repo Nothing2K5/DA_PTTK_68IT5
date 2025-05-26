@@ -40,7 +40,7 @@ public class DatXeDAO extends AbstractDAO<DatXe> {
                         rs.getString(6),
                         rs.getString(7),
                         rs.getString(8),
-                        rs.getString(9)
+                        rs.getInt(9)
                 ));
             }
             return list;
@@ -67,7 +67,7 @@ public class DatXeDAO extends AbstractDAO<DatXe> {
                         rs.getString(6),
                         rs.getString(7),
                         rs.getString(8),
-                        rs.getString(9)
+                        rs.getInt(9)
                 );
             }
         } catch (Exception e) {
@@ -94,7 +94,7 @@ public class DatXeDAO extends AbstractDAO<DatXe> {
                         rs.getString(6),
                         rs.getString(7),
                         rs.getString(8),
-                        rs.getString(9)
+                        rs.getInt(9)
                 ));
             }
             return list;
@@ -122,7 +122,7 @@ public class DatXeDAO extends AbstractDAO<DatXe> {
                         rs.getString(6),
                         rs.getString(7),
                         rs.getString(8),
-                        rs.getString(9)
+                        rs.getInt(9)
                 ));
             }
             return list;
@@ -150,7 +150,7 @@ public class DatXeDAO extends AbstractDAO<DatXe> {
                         rs.getString(6),
                         rs.getString(7),
                         rs.getString(8),
-                        rs.getString(9)
+                        rs.getInt(9)
                 ));
             }
             return list;
@@ -178,7 +178,7 @@ public class DatXeDAO extends AbstractDAO<DatXe> {
                         rs.getString(6),
                         rs.getString(7),
                         rs.getString(8),
-                        rs.getString(9)
+                        rs.getInt(9)
                 ));
             }
             return list;
@@ -189,7 +189,7 @@ public class DatXeDAO extends AbstractDAO<DatXe> {
     }
 
     public List<DatXe> findDangChoThue(String userID) {
-        String query = "SELECT * FROM DatXe WHERE UserID = ? AND TrangThai = 'Đang thuê'";
+        String query = "SELECT * FROM DatXe WHERE UserID = ? AND ThoiGianChoThue = '00:00:00' AND TrangThai = N'Đã đặt'";
         List<DatXe> list = new ArrayList<>();
         try {
             conn = new DBContext().getConnection();
@@ -206,7 +206,7 @@ public class DatXeDAO extends AbstractDAO<DatXe> {
                         rs.getString(6),
                         rs.getString(7),
                         rs.getString(8),
-                        rs.getString(9)
+                        rs.getInt(9)
                 ));
             }
             return list;
@@ -216,7 +216,7 @@ public class DatXeDAO extends AbstractDAO<DatXe> {
         return null;
     }
 
-    public String add(String userID, String xeID, Date ngay, String thoiGianBatDau, String thoiGianKetThuc, String thoiGianChoThue, String trangThai, String chiPhi) {
+    public String add(String userID, String xeID, Date ngay, String thoiGianBatDau, String thoiGianKetThuc, String thoiGianChoThue, String trangThai, int chiPhi) {
         String query = "INSERT INTO DatXe (DatXeID, UserID, XeID, Ngay, ThoiGianBatDau, ThoiGianKetThuc, ThoiGianChoThue, TrangThai, ChiPhi) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         String datXeID = generatedID("D", findLastItem(findAll()).getDatXeID());
         try {
@@ -225,12 +225,12 @@ public class DatXeDAO extends AbstractDAO<DatXe> {
             ps.setString(1, datXeID);
             ps.setString(2, userID);
             ps.setString(3, xeID);
-            ps.setDate(4, new java.sql.Date(ngay.getTime()));
+            ps.setDate(4, ngay);
             ps.setString(5, thoiGianBatDau);
             ps.setString(6, thoiGianKetThuc);
             ps.setString(7, thoiGianChoThue);
             ps.setString(8, trangThai);
-            ps.setString(9, chiPhi);
+            ps.setInt(9, chiPhi);
             if (ps.executeUpdate() > 0) {
                 return datXeID;
             }
@@ -254,19 +254,19 @@ public class DatXeDAO extends AbstractDAO<DatXe> {
         return null;
     }
 
-    public boolean update(String datXeID, String userID, String xeID, Date ngay, String thoiGianBatDau, String thoiGianKetThuc, String thoiGianChoThue, String trangThai, String chiPhi) {
+    public boolean update(String datXeID, String userID, String xeID, Date ngay, String thoiGianBatDau, String thoiGianKetThuc, String thoiGianChoThue, String trangThai, int chiPhi) {
         String query = "UPDATE DatXe SET UserID = ?, XeID = ?, Ngay = ?, ThoiGianBatDau = ?, ThoiGianKetThuc = ?, ThoiGianChoThue = ?, TrangThai = ?, ChiPhi = ? WHERE DatXeID = ?";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(query);
             ps.setString(1, userID);
             ps.setString(2, xeID);
-            ps.setDate(3, new java.sql.Date(ngay.getTime()));
+            ps.setDate(3, ngay);
             ps.setString(4, thoiGianBatDau);
             ps.setString(5, thoiGianKetThuc);
             ps.setString(6, thoiGianChoThue);
             ps.setString(7, trangThai);
-            ps.setString(8, chiPhi);
+            ps.setInt(8, chiPhi);
             ps.setString(9, datXeID);
             int rowsAffected = ps.executeUpdate();
             return rowsAffected > 0;

@@ -22,12 +22,12 @@ public class DBContext {
         return DriverManager.getConnection(url, userID, password);
     }
 
-    private final String serverName = "";
-    private final String dbName = "";
-    private final String portNumber = "";
+    private final String serverName = "DESKTOP-B11V993";
+    private final String dbName = "EBicycleRent";
+    private final String portNumber = "1433";
     private final String instance = "";
-    private final String userID = "";
-    private final String password = "";
+    private final String userID = "sa";
+    private final String password = "@2005";
 
 //    public static void main(String[] args) {
 //        try {

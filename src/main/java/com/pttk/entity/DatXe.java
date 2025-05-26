@@ -20,12 +20,12 @@ public class DatXe {
     private String thoiGianKetThuc;
     private String thoiGianChoThue;
     private String trangThai;
-    private String chiPhi;
+    private int chiPhi;
 
     public DatXe() {
     }
 
-    public DatXe(String datXeID, String userID, String xeID, Date ngay, String thoiGianBatDau, String thoiGianKetThuc, String thoiGianChoThue, String trangThai, String chiPhi) {
+    public DatXe(String datXeID, String userID, String xeID, Date ngay, String thoiGianBatDau, String thoiGianKetThuc, String thoiGianChoThue, String trangThai, int chiPhi) {
         this.datXeID = datXeID;
         this.userID = userID;
         this.xeID = xeID;
@@ -101,11 +101,11 @@ public class DatXe {
         this.trangThai = trangThai;
     }
 
-    public String getChiPhi() {
+    public int getChiPhi() {
         return chiPhi;
     }
 
-    public void setChiPhi(String chiPhi) {
+    public void setChiPhi(int chiPhi) {
         this.chiPhi = chiPhi;
     }
 

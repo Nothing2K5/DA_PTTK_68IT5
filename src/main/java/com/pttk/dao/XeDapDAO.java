@@ -74,6 +74,25 @@ public class XeDapDAO extends AbstractDAO<XeDap> {
         return null;
     }
 
+    public List<XeDap> findByTramXeAndLoaiXe(String tramXeID, String loaiXe) {
+        String query = "SELECT * FROM XeDap WHERE TramXeID = ? AND LoaiXe = ?";
+        List<XeDap> list = new ArrayList<>();
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, tramXeID);
+            ps.setString(2, loaiXe);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new XeDap(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)));
+            }
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public List<XeDap> findByTrangThai(String trangThaiXe) {
         String query = "SELECT * FROM XeDap WHERE TrangThaiXe = ?";
         List<XeDap> list = new ArrayList<>();

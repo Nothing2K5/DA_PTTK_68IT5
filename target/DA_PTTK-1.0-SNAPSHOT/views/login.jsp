@@ -19,11 +19,9 @@
             <ul class="nav-links">               
                 <c:if test="${sessionScope.TAIKHOAN != null}">
                     <li><a href="<c:url value='/home'/>"><i class="fas fa-home"></i> Trang chủ</a></li>
-                    <li><a href="<c:url value='/rent'/>"><i class="fas fa-bicycle"></i> Thuê xe</a></li>
-                    <li><a href="<c:url value='/return'/>"><i class="fas fa-undo-alt"></i> Trả xe</a></li>
+                    <li><a href="<c:url value='/stations'/>"><i class="fas fa-map-marker-alt"></i> Trạm xe</a></li>                 
                     <li><a href="topup.html"><i class="fas fa-wallet"></i> Nạp tiền</a></li>
-                    <li><a href="<c:url value='/profile'/>"><i class="fas fa-user"></i> Hồ sơ</a></li>
-                    <li><a href="<c:url value='/stations'/>"><i class="fas fa-map-marker-alt"></i> Trạm xe</a></li>
+                    <li><a href="<c:url value='/profile'/>"><i class="fas fa-user"></i> Hồ sơ</a></li>                   
                     <li><a href="notifications.html"><i class="fas fa-bell"></i> Thông báo</a></li>                   
                     </c:if>
             </ul>
@@ -66,13 +64,25 @@
                 </div>
                 <div class="sidebar-content">
                     <div class="sidebar-menu">
-                        <a href="<c:url value='/rent'/>" class="sidebar-item">
-                            <i class="fas fa-bicycle"></i>
-                            <span>Thuê xe</span>
+                        <a href="<c:url value='/profile'/>" class="sidebar-item">
+                            <i class="fas fa-user-circle"></i>
+                            <span>Hồ sơ cá nhân</span>
                         </a>
-                        <a href="<c:url value='/return'/>" class="sidebar-item">
-                            <i class="fas fa-undo-alt"></i>
-                            <span>Trả xe</span>
+                        <a href="topup.html" class="sidebar-item">
+                            <i class="fas fa-wallet"></i>
+                            <span>Nạp tiền</span>
+                        </a>
+                        <a href="<c:url value='/stations'/>" class="sidebar-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Danh sách trạm</span>
+                        </a>
+                        <a href="<c:url value='/station_search'/>" class="sidebar-item">
+                            <i class="fas fa-search-location"></i>
+                            <span>Tìm trạm xe</span>
+                        </a>
+                        <a href="<c:url value='/vehicles'/>" class="sidebar-item">
+                            <i class="fas fa-motorcycle"></i>
+                            <span>Xe có sẵn</span>
                         </a>
                         <a href="<c:url value='/current_rentals'/>" class="sidebar-item">
                             <i class="fas fa-clock"></i>
@@ -82,30 +92,18 @@
                             <i class="fas fa-history"></i>
                             <span>Lịch sử thuê</span>
                         </a>
+                        <a href="<c:url value='/rent'/>" class="sidebar-item">
+                            <i class="fas fa-bicycle"></i>
+                            <span>Thuê xe</span>
+                        </a>
+                        <a href="<c:url value='/return'/>" class="sidebar-item">
+                            <i class="fas fa-undo-alt"></i>
+                            <span>Trả xe</span>
+                        </a>                                           
                         <a href="promotions.html" class="sidebar-item">
                             <i class="fas fa-tags"></i>
                             <span>Ưu đãi</span>
-                        </a>
-                        <a href="<c:url value='/profile'/>" class="sidebar-item">
-                            <i class="fas fa-user-circle"></i>
-                            <span>Hồ sơ cá nhân</span>
-                        </a>
-                        <a href="topup.html" class="sidebar-item">
-                            <i class="fas fa-wallet"></i>
-                            <span>Nạp tiền</span>
-                        </a>
-                        <a href="<c:url value='/station_search'/>" class="sidebar-item">
-                            <i class="fas fa-search-location"></i>
-                            <span>Tìm trạm xe</span>
-                        </a>
-                        <a href="<c:url value='/stations'/>" class="sidebar-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Danh sách trạm</span>
-                        </a>
-                        <a href="<c:url value='/vehicles'/>" class="sidebar-item">
-                            <i class="fas fa-motorcycle"></i>
-                            <span>Xe có sẵn</span>
-                        </a>
+                        </a>                              
                         <a href="notifications.html" class="sidebar-item">
                             <i class="fas fa-bell"></i>
                             <span>Thông báo</span>

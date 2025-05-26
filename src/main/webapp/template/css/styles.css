@@ -240,6 +240,7 @@ body.sidebar-open {
 /* ==== Form Styles ==== */
 .form-container,
 .profile-container,
+.rent-container,
 .notifications-container,
 .stations-container,
 .search-container,
@@ -255,6 +256,7 @@ body.sidebar-open {
 
 .form-container h2,
 .profile-container h2,
+.rent-container h2,
 .notifications-container h2,
 .stations-container h2,
 .search-container h2,
@@ -342,6 +344,28 @@ button:hover {
     background-color: #f9f9f9;
 }
 
+.station-table .btn-rent {
+    background-color: #4CAF50;
+    color: white;
+    display: inline-block;
+    padding: 8px 16px; /* tăng padding ngang */
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+
+    white-space: nowrap; /* Giữ nội dung trên 1 dòng */
+}
+
+.btn-rent:hover {
+    background-color: #45a049; /* màu xanh lá khi hover */
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+}
+
 /* ==== Hero ==== */
 .hero {
     background-image: url('images/bike-banner.jpg');
@@ -383,13 +407,19 @@ button:hover {
 
 .hero-btn {
     display: inline-block;
-    background-color: #2196F3;
+    width: 100%;
+    background-color: #2196f3;
     color: white;
-    padding: 0.75rem 1.5rem;
-    border-radius: 8px;
+    padding: 0.75rem;
+    font-size: 1rem;
     font-weight: bold;
-    margin-top: 1rem;
+    text-align: center;
+    text-decoration: none;  /* Rất quan trọng để bỏ gạch dưới của thẻ a */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
     transition: background-color 0.3s;
+    margin-top: 1rem;
 }
 
 .hero-btn:hover {
@@ -405,6 +435,7 @@ button:hover {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 1.5rem;
+    margin-top: 30px;
 }
 
 .action-card {
@@ -500,6 +531,7 @@ body.dark-mode .sidebar-item:hover {
 
 body.dark-mode .form-container,
 body.dark-mode .profile-container,
+body.dark-mode .rent-container,
 body.dark-mode .notifications-container,
 body.dark-mode .stations-container,
 body.dark-mode .search-container,
@@ -564,6 +596,7 @@ body.dark-mode .station-table tr:hover {
 
     .form-container,
     .profile-container,
+    .rent-container,
     .notifications-container,
     .stations-container,
     .search-container,
