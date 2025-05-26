@@ -35,53 +35,57 @@ public class ReturnControl extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html;charset=UTF-8");
+
         String datXeID = req.getParameter("datXeID");
 
-        NguoiDungDAO nddao = new NguoiDungDAO();
-        DatXeDAO dxdao = new DatXeDAO();
-        TramXeDAO txdao = new TramXeDAO();
+        if (datXeID != null) {
+            NguoiDungDAO nddao = new NguoiDungDAO();
+            DatXeDAO dxdao = new DatXeDAO();
+            TramXeDAO txdao = new TramXeDAO();
 
-        HttpSession session = req.getSession();
-        TaiKhoan tkSession = (TaiKhoan) session.getAttribute("TAIKHOAN");
+            HttpSession session = req.getSession();
+            TaiKhoan tkSession = (TaiKhoan) session.getAttribute("TAIKHOAN");
 
-        DatXe dx = dxdao.findOne(datXeID);
-        NguoiDung nd = nddao.findOneByTKID(tkSession.getTKID());
+            DatXe dx = dxdao.findOne(datXeID);
+            NguoiDung nd = nddao.findOneByTKID(tkSession.getTKID());
 
-        // Lấy thời gian hiện tại làm thời gian kết thúc
-        LocalTime thoiGianKetThuc = LocalTime.now();
-        LocalTime thoiGianBatDau = LocalTime.parse(dx.getThoiGianBatDau());
+            // Lấy thời gian hiện tại làm thời gian kết thúc
+            LocalTime thoiGianKetThuc = LocalTime.now();
+            LocalTime thoiGianBatDau = LocalTime.parse(dx.getThoiGianBatDau());
 
-        // Tính thời gian thuê dưới dạng Duration
-        Duration duration = Duration.between(thoiGianBatDau, thoiGianKetThuc);
-        long hours = duration.toHours();
-        int minutes = duration.toMinutesPart();
-        int seconds = duration.toSecondsPart();
+            // Tính thời gian thuê dưới dạng Duration
+            Duration duration = Duration.between(thoiGianBatDau, thoiGianKetThuc);
+            long hours = duration.toHours();
+            int minutes = duration.toMinutesPart();
+            int seconds = duration.toSecondsPart();
 
-        // Chuyển thành định dạng hh:mm:ss
-        String thoiGianThue = String.format("%02d:%02d:%02d", hours, minutes, seconds);
+            // Chuyển thành định dạng hh:mm:ss
+            String thoiGianThue = String.format("%02d:%02d:%02d", hours, minutes, seconds);
 
-        // Phí thuê: 2000đ/giờ (có thể làm tròn lên 1 giờ nếu muốn)
-        double gioThue = duration.toMinutes() / 60.0;
-        int phi = (int) Math.ceil(gioThue * 2000); // làm tròn lên
+            // Phí thuê: 2000đ/giờ (có thể làm tròn lên 1 giờ nếu muốn)
+            double gioThue = duration.toMinutes() / 60.0;
+            int phi = (int) Math.ceil(gioThue * 2000); // làm tròn lên
 
-        if (dx.getThoiGianKetThuc().equals("00:00:00")) {
-            dxdao.update(
-                    datXeID,
-                    nd.getUserID(),
-                    dx.getXeID(),
-                    dx.getTramXeBatDau(),
-                    dx.getTramXeKetThuc(),
-                    dx.getNgay(),
-                    dx.getThoiGianBatDau(),
-                    thoiGianKetThuc.toString(),
-                    thoiGianThue, // dạng hh:mm:ss
-                    "Hoàn thành",
-                    phi
-            );
+            if (dx.getThoiGianKetThuc().equals("00:00:00")) {
+                dxdao.update(
+                        datXeID,
+                        nd.getUserID(),
+                        dx.getXeID(),
+                        dx.getTramXeBatDau(),
+                        dx.getTramXeKetThuc(),
+                        dx.getNgay(),
+                        dx.getThoiGianBatDau(),
+                        thoiGianKetThuc.toString(),
+                        thoiGianThue, // dạng hh:mm:ss
+                        "Hoàn thành",
+                        phi
+                );
+            }
+
+            req.setAttribute("listTramXe", txdao.findAll());
+            req.setAttribute("datXe", dxdao.findOne(datXeID));
+
         }
-
-        req.setAttribute("listTramXe", txdao.findAll());
-        req.setAttribute("datXe", dxdao.findOne(datXeID));
 
         RequestDispatcher rd = req.getRequestDispatcher("/views/return.jsp");
         rd.forward(req, resp);

@@ -245,13 +245,19 @@ body.sidebar-open {
 .stations-container,
 .search-container,
 .vehicles-container,
-.return-container {
+.return-container,
+.topup-container {
     max-width: 800px;
     margin: 3rem auto;
     background: #fff;
     padding: 2rem;
     border-radius: 12px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Topup container has a smaller max-width */
+.topup-container {
+    max-width: 500px;
 }
 
 .form-container h2,
@@ -261,7 +267,8 @@ body.sidebar-open {
 .stations-container h2,
 .search-container h2,
 .vehicles-container h2,
-.return-container h2 {
+.return-container h2,
+.topup-container h2 {
     text-align: center;
     color: #4CAF50;
     margin-bottom: 1.5rem;
@@ -536,7 +543,8 @@ body.dark-mode .notifications-container,
 body.dark-mode .stations-container,
 body.dark-mode .search-container,
 body.dark-mode .vehicles-container,
-body.dark-mode .return-container {
+body.dark-mode .return-container,
+body.dark-mode .topup-container {
     background-color: #1f1f1f;
     color: #c8e6c9;
 }
@@ -601,7 +609,8 @@ body.dark-mode .station-table tr:hover {
     .stations-container,
     .search-container,
     .vehicles-container,
-    .return-container {
+    .return-container,
+    .topup-container {
         padding: 1rem;
         margin: 1.5rem auto;
     }

@@ -2,6 +2,7 @@ com\pttk\control\Current_RentalsControl.class
 com\pttk\control\VehiclesControl.class
 com\pttk\entity\NguoiDung.class
 com\pttk\contex\DBContext.class
+com\pttk\control\TopupControl.class
 com\pttk\control\HomeControl.class
 com\pttk\dao\ThanhToanDAO.class
 com\pttk\entity\QuanLy.class

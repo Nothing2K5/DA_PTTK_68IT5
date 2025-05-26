@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 <html lang="vi">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Thông tin cá nhân - EBicycleRent</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Dashboard - EBicycleRent</title>
         <link href="<c:url value='template/css/styles.css'/>" rel="stylesheet" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
     </head>
     <body>
         <!-- Navbar -->
@@ -52,7 +52,6 @@
                 </c:choose>
             </div>
         </nav>       
-
 
         <!-- Sidebar -->
         <c:if test="${sessionScope.TAIKHOAN != null}">
@@ -117,33 +116,23 @@
             <div class="sidebar-overlay" id="sidebarOverlay"></div>
         </c:if>
 
-        <div class="profile-container">
-            <h2>Thông tin cá nhân</h2>
-            <form action="<c:url value='/profile'/>" method="post">
+        <div class="topup-container">
+            <h2>Nạp tiền vào tài khoản</h2>
+            <form action="<c:url value='/topup'/>" method="post">
                 <div class="form-group">
-                    <label for="fullname">Họ và tên</label>
-                    <input type="text" id="hoTen" name="hoTen" value="${nguoiDung.hoTen}" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" value="${nguoiDung.email}" required>
+                    <label for="amount">Số tiền cần nạp (VNĐ)</label>
+                    <input type="number" id="soDu" name="soDu" min="10000" step="1000" required>
                 </div>
                 <div class="form-group">
-                    <label for="phone">Số điện thoại</label>
-                    <input type="tel" id="sdt" name="sdt" value="${taiKhoan.sdt}" required>
+                    <label for="method">Phương thức thanh toán</label>
+                    <select id="method" name="method" required>
+                        <option value="">-- Chọn phương thức --</option>
+                        <option value="bank">Chuyển khoản ngân hàng</option>
+                        <option value="momo">Ví MoMo</option>
+                        <option value="credit">Thẻ tín dụng/Ghi nợ</option>
+                    </select>
                 </div>
-                <div class="form-group">
-                    <label for="price">Số dư</label>
-                    <input type="text" id="soDu" name="soDu" value="${taiKhoan.soDu}" readonly>
-                </div>
-                <div class="form-group">
-                    <label for="password">Đổi mật khẩu (nếu muốn)</label>
-                    <input type="password" id="matKhau" name="matKhau">
-                </div>
-                <div class="form-actions">
-                    <button type="submit" class="save-btn">Lưu thay đổi</button>
-                    <button type="button" class="delete-btn">Xóa tài khoản</button>
-                </div>
+                <button type="submit">Nạp tiền</button>
             </form>
         </div>
 
@@ -170,13 +159,5 @@
 
         <!-- Scripts -->
         <script src="<c:url value='template/js/scripts.js'/>"></script>
-        <script>
-            document.querySelector('.delete-btn')?.addEventListener('click', () => {
-                if (confirm('Bạn có chắc chắn muốn xoá tài khoản? Hành động này không thể hoàn tác.')) {
-                    window.location.href = '<c:url value="/profile?action=delete"/>';
-                }
-            });
-        </script>
-
     </body>
 </html>

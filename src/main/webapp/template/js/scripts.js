@@ -1,7 +1,21 @@
+// Toggle Dark Mode with persistence
+const modeSwitch = document.querySelector('.mode-switch');
 
-// Toggle Dark Mode
-document.querySelector('.mode-switch').addEventListener('click', () => {
+// Kiểm tra trạng thái dark mode đã lưu trong localStorage khi trang được tải
+if (localStorage.getItem('dark-mode') === 'enabled') {
+    document.body.classList.add('dark-mode');
+}
+
+// Gắn sự kiện click để bật/tắt dark mode và lưu trạng thái
+modeSwitch.addEventListener('click', () => {
     document.body.classList.toggle('dark-mode');
+
+    // Lưu trạng thái vào localStorage
+    if (document.body.classList.contains('dark-mode')) {
+        localStorage.setItem('dark-mode', 'enabled');
+    } else {
+        localStorage.setItem('dark-mode', 'disabled');
+    }
 });
 
 // Sidebar functionality

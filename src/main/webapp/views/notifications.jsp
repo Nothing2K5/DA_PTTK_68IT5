@@ -17,11 +17,11 @@
                 <span>EBicycleRent</span>
             </div>
 
-           <ul class="nav-links">               
+            <ul class="nav-links">               
                 <c:if test="${sessionScope.TAIKHOAN != null}">
                     <li><a href="<c:url value='/home'/>"><i class="fas fa-home"></i> Trang chủ</a></li>
                     <li><a href="<c:url value='/stations'/>"><i class="fas fa-map-marker-alt"></i> Trạm xe</a></li>                 
-                    <li><a href="topup.html"><i class="fas fa-wallet"></i> Nạp tiền</a></li>
+                    <li><a href="<c:url value='/topup'/>"><i class="fas fa-wallet"></i> Nạp tiền</a></li>
                     <li><a href="<c:url value='/profile'/>"><i class="fas fa-user"></i> Hồ sơ</a></li>                   
                     <li><a href="notifications.html"><i class="fas fa-bell"></i> Thông báo</a></li>                   
                     </c:if>
@@ -69,7 +69,7 @@
                             <i class="fas fa-user-circle"></i>
                             <span>Hồ sơ cá nhân</span>
                         </a>
-                        <a href="topup.html" class="sidebar-item">
+                        <a href="<c:url value='/topup'/>" class="sidebar-item">
                             <i class="fas fa-wallet"></i>
                             <span>Nạp tiền</span>
                         </a>
