@@ -125,7 +125,7 @@ public class ReturnControl extends HttpServlet {
                 dx.getChiPhi()
         );
 
-        xddao.update(xd.getXeID(), xd.getTramXeID(), xd.getLoaiXe(), "Trống");
+        xddao.update(xd.getXeID(), tramXeKetThuc, xd.getLoaiXe(), "Trống");
 
         resp.sendRedirect(req.getContextPath() + "/rental_history");
     }

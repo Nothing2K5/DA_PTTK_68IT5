@@ -5,6 +5,8 @@ com\pttk\contex\DBContext.class
 com\pttk\control\TopupControl.class
 com\pttk\control\HomeControl.class
 com\pttk\dao\ThanhToanDAO.class
+com\pttk\control\AdminVehiclesControl.class
+com\pttk\control\AdminStationsControl.class
 com\pttk\entity\QuanLy.class
 com\pttk\control\Station_SearchControl.class
 com\pttk\control\Rental_HistoryControl.class
